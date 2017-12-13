@@ -2,10 +2,12 @@ var box = document.getElementById("box");
 var boxHeight = box.offsetHeight;
 var boxWidth = box.offsetWidth;
 
-//hardcode target as center
-//randomize later
-var targetX = boxWidth / 2;
-var targetY = boxHeight / 2;
+var targetX = boxWidth/2;
+var targetY = boxHeight/2;
+/*
+var targetX = boxWidth * Math.random();
+var targetY = boxHeight * Math.random();
+*/
 
 
 console.log( "box height: " + boxHeight );
@@ -33,10 +35,19 @@ var findIt = function(e) {
     //body.innerHTML("background-color")
 };
 
-/*
-your OTHER FXNS
+var score = 0;
 
-*/
+var addScore = function(e){
+    if (distance <= 10) {
+	score += 1;
+	console.log("Your score is now " + score);
+    }
+    else{
+	console.log("Not here!");
+    }
+}
+
 
 box.addEventListener("mousemove", findIt);
+box.addEventListener("click", addScore);
 
