@@ -34,6 +34,8 @@ var distance = function (x0, y0, x1, y1) {
   //return Math.sqrt(Math.pow(y1-y0)+Math.pow(x1-x0));
 };
 
+
+
 var findIt = function(e) {
     var x = event.clientX;
     var y = event.clientY;
@@ -41,7 +43,20 @@ var findIt = function(e) {
     away = distance(targetX, targetY, x, y);
     console.log("You are " + away + " units away");
     var bcolor = box.getAttribute("style");
-    box.setAttribute("style", "background-color: rgb(0, 0, " + (256-away) + ");");
+    //Changes the color depending on the score (red/blue/green)
+    if (score%3 == 1) 
+	box.setAttribute("style", "background-color: rgb(0, 0, " + (256-away) + ");");
+    else if (score%3 == 2) 
+	box.setAttribute("style", "background-color: rgb(0, " + (256-away) + ", 0);");
+    else
+	box.setAttribute("style", "background-color: rgb(" + (256-away) + ", 0, 0);");
+    //console.log(bcolor);
+
+    /*var mooFont = box.getAttribute("h1");
+    var mooHTML = document.getElementsByClassName("full");
+    box.setAttribute("h1","moo");
+    box.setAttribute("h1","document.write('moo')");
+    console.log(mooFont); */
     //goal(away));
 };
 
@@ -63,12 +78,15 @@ var addScore = function(e){
 //Helper method that gives a congratulations when the mouse is close enough to the goal
 var goal = function(e) {
     if (away < 20) {
-        console.log("Congratulations!");
+        console.log("Cow found!");
         var body = document.getElementsByClassName("full");
 	targetX = Math.random() * boxWidth;
 	targetY = Math.random() * boxHeight;
-       
+	var img = document.createElement("IMG");
+	img.setAttribute("src", "funicular.jpg");
+	document.body.appendChild(img);
     }
+    
 }
 box.addEventListener("mousemove", findIt);
 
