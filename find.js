@@ -89,7 +89,7 @@ var goal = function(e) {
     
 }
 
-/*
+
 var imgDisplay = function(e){
     if (away < 20){
 	var x = document.createElement("IMG");
@@ -102,20 +102,27 @@ var imgDisplay = function(e){
 	box.innerHTML = "";
     }
 }
-*/
+
 
 //gives visual to show user that cow is in the area.
 
 var msgDisplay = function(e){
+    	box.innerHTML = "COW";
     if (away < 20){
-	box.style.fontSize = "xx-large";
-	box.innerHTML = "COW";
+	box.style.fontSize = "30px";
 	//console.log("COW");
     }
+    else if (away < 30){
+	box.style.fontSize = "20px";
+    }
+    else if (away < 40){
+	box.style.fontSize = "10px";
+    }
     else{
-	box.innerHTML = "";
+	box.style.fontSize = "5px";
     }
 }
+
 
 
 box.addEventListener("mousemove", findIt); //distance for console
