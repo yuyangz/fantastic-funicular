@@ -35,7 +35,7 @@ var distance = function (x0, y0, x1, y1) {
 };
 
 
-
+//checks how far the cow is
 var findIt = function(e) {
     var x = event.clientX;
     var y = event.clientY;
@@ -63,6 +63,7 @@ var findIt = function(e) {
 
 var score = 0;
 
+//increases score when cow is found
 var addScore = function(e){
     if (away < 20) {
 	score += 1;
@@ -82,15 +83,46 @@ var goal = function(e) {
         var body = document.getElementsByClassName("full");
 	targetX = Math.random() * boxWidth;
 	targetY = Math.random() * boxHeight;
-	var img = document.createElement("IMG");
-	img.setAttribute("src", "funicular.jpg");
-	document.body.appendChild(img);
+	
+
     }
     
 }
-box.addEventListener("mousemove", findIt);
 
-box.addEventListener("click", addScore);
+/*
+var imgDisplay = function(e){
+    if (away < 20){
+	var x = document.createElement("IMG");
+	x.setAttribute("src", "funicular.jpg");
+	document.body.appendChild(x);
+	box.innerHTML = x;
+	console.log(x);
+    }
+    else{
+	box.innerHTML = "";
+    }
+}
+*/
 
-box.addEventListener("click", goal);
+//gives visual to show user that cow is in the area.
+
+var msgDisplay = function(e){
+    if (away < 20){
+	box.style.fontSize = "xx-large";
+	box.innerHTML = "COW";
+	//console.log("COW");
+    }
+    else{
+	box.innerHTML = "";
+    }
+}
+
+
+box.addEventListener("mousemove", findIt); //distance for console
+
+box.addEventListener("click", addScore); //adds score
+
+box.addEventListener("click", goal); //changes coordinate of cow and tells you that cow is found
+
+box.addEventListener("mousemove", msgDisplay); //gives visual hint of where the cow is by displaying a word
 
